@@ -1,0 +1,19 @@
+diff --git a/Makefile b/Makefile
+index 83ebd45..d8cdf73 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,5 @@
+ SUBDIRS = sepolicy setfiles semanage load_policy newrole run_init sandbox secon audit2allow sestatus semodule_package semodule semodule_link semodule_expand semodule_deps sepolgen-ifgen setsebool scripts po man gui
++MYSUBDIRS = setfiles load_policy sestatus secon
+ 
+ INOTIFYH = $(shell ls /usr/include/sys/inotify.h 2>/dev/null)
+ 
+@@ -7,7 +8,7 @@ ifeq (${INOTIFYH}, /usr/include/sys/inotify.h)
+ endif
+ 
+ all install relabel clean indent:
+-	@for subdir in $(SUBDIRS); do \
++	@for subdir in $(MYSUBDIRS); do \
+ 		(cd $$subdir && $(MAKE) $@) || exit 1; \
+ 	done
+ 
